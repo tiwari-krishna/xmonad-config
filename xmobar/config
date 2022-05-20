@@ -1,0 +1,32 @@
+Config { font = "xft:FiraMono Nerd Font:weight=Medium:size=10:antialias=true:hinting=true"
+       , borderColor = "black"
+       , border = TopB
+       , bgColor = "#1f211f"
+       --, fgColor = "grey"
+       , fgColor = "#ffffff"
+       , alpha = 255
+       , position = Static { xpos = 0 , ypos = 0, width = 1366, height = 20 }
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [
+		      Run Date "<fn=1> \xf133 </fn> %H:%M %A %B %d" "Date" 600
+            , Run Com "stat-timedate" ["",""] "date" 600
+            , Run Com "stat-music" ["",""] "music" 60
+            , Run Com "stat-weather" ["",""] "weather" 7200
+            , Run Com "stat-backlight" ["",""] "backlight" 60
+            , Run Com "stat-volume" ["",""] "volume" 60
+            , Run Com "stat-moon" ["",""] "moon" 7200
+            , Run Com "stat-wifi" ["",""] "wifi" 7200
+            , Run Battery [
+            	"-t", " \xf240  <acstatus>: <left>% - <timeleft>",
+             	"--",
+	            "-O", "AC",
+	            "-o", "Bat",
+	            "-h", "green",
+	            "-l", "red"
+	             ] 10
+            , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " %StdinReader% }{<fc=#c3ff00>%music%</fc>|<fc=#00ffa6>%weather%</fc>|<fc=#a0ff08>%moon%</fc>|<fc=#a908ff>%battery%</fc>|<fc=#ff7f08>%volume%</fc>|<fc=#c9ff08>%wifi%</fc>|<fc=#0062ff>%backlight%</fc>|<fc=#ee9a00>%date%</fc>" }
